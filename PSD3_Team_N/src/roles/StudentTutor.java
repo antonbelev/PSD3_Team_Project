@@ -3,6 +3,7 @@ package roles;
 import java.util.ArrayList;
 
 import session.Course;
+import session.Session;
 
 public class StudentTutor extends Student implements TutorInterface{
 
@@ -14,7 +15,7 @@ public class StudentTutor extends Student implements TutorInterface{
 	}
 
 	@Override
-	public void updateAttendance() {
+	public void updateAttendance(Session sesh) {
 		// TODO Auto-generated method stub
 		
 	}
