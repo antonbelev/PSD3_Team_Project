@@ -59,6 +59,22 @@ public class TeachingAdmin extends User {
 		return csvHeader;
 	}
 
+	public String exportStudentInformation(Student s) {
+		String csvHeader = "Course,ID Number,Coursework,Exam,Total/n";
+		String csvLine = "";
+
+		for (Course c : s.getCourses()) {
+			int total = c.getCourseWorkMark() + c.getExamMark();
+			csvLine += c.getName() + "," + c.getCourseId() + ","
+					+ c.getCourseWorkMark() + "," + c.getExamMark() + ","
+					+ total + "/n";
+			csvHeader += csvLine;
+		}
+
+		return csvHeader;
+
+	}
+
 	public void csvFileGenerator(String fileName, String content) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName
