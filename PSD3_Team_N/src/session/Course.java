@@ -4,44 +4,102 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import roles.Lecturer;
+import roles.Student;
 import assignments.Assignment;
 
 public class Course {
 	
 	private String name;
+	private String courseId;
 	private Lecturer lecturer;
 	private Date startDate;
 	private Date endDate;
 	private String courseLevel;
 	private int credits;
 	
+	private ArrayList<Student> students;	
 	private ArrayList<Session> sessions;
 	private ArrayList<Assignment> assignments;
+	
+	private int courseWorkMark;
+	private int examMark;
+	
 	private boolean hasExams;
 	private boolean hasAttendenceMonitoring;
 	
-	public Course(String name, Lecturer lecturer, Date startDate, Date endDate,
-			String courseLevel, int credits, ArrayList<Session> sessions,
-			ArrayList<Assignment> assignments, boolean hasExams, boolean hasAttendenceMonitoring) {
+	public Course()
+	{
+		
+	}
+	
+	public Course(String name, String courseId, Lecturer lecturer,
+			Date startDate, Date endDate, String courseLevel, int credits,
+			ArrayList<Student> students, ArrayList<Session> sessions,
+			ArrayList<Assignment> assignments, int courseWorkMark,
+			int examMark, boolean hasExams, boolean hasAttendenceMonitoring) {
 		super();
 		this.name = name;
+		this.courseId = courseId;
 		this.lecturer = lecturer;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.courseLevel = courseLevel;
 		this.credits = credits;
+		this.students = students;
 		this.sessions = sessions;
 		this.assignments = assignments;
+		this.courseWorkMark = courseWorkMark;
+		this.examMark = examMark;
 		this.hasExams = hasExams;
 		this.hasAttendenceMonitoring = hasAttendenceMonitoring;
 	}
 
+	public ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
+	}
+
+	public int getCourseWorkMark() {
+		return courseWorkMark;
+	}
+
+	public void setCourseWorkMark(int courseWorkMark) {
+		this.courseWorkMark = courseWorkMark;
+	}
+
+	public int getExamMark() {
+		return examMark;
+	}
+
+	public void setExamMark(int examMark) {
+		this.examMark = examMark;
+	}
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public ArrayList<Assignment> getAssignments() {
+		return assignments;
+	}
+
+	public void setAssignments(ArrayList<Assignment> assignments) {
+		this.assignments = assignments;
 	}
 
 	public Lecturer getLecturer() {
@@ -114,6 +172,11 @@ public class Course {
 
 	public void setHasAttendenceMonitoring(boolean hasAttendenceMonitoring) {
 		this.hasAttendenceMonitoring = hasAttendenceMonitoring;
+	}
+	
+	public boolean equals(Course course)
+	{
+		return this.courseId == course.courseId;
 	}
 	
 	

@@ -1,7 +1,5 @@
 package session;
 
-import javax.xml.crypto.Data;
-
 public class TimeStamp {
 	
 	private int startH;
@@ -11,7 +9,6 @@ public class TimeStamp {
 		this.startH = startH;
 		this.endH = endH;
 	}
-	
 	
 	public int getStartH() {
 		return startH;

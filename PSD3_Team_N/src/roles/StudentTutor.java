@@ -1,10 +1,15 @@
 package roles;
 
+import java.util.ArrayList;
+
+import session.Course;
+
 public class StudentTutor extends Student implements TutorInterface{
 
+
 	public StudentTutor(String firstName, String lastName, String iD,
-			String email) {
-		super(firstName, lastName, iD, email);
+			String email, ArrayList<Course> courses) {
+		super(firstName, lastName, iD, email, courses);
 		// TODO Auto-generated constructor stub
 	}
 

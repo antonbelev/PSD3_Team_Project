@@ -9,11 +9,13 @@ public class Lab extends Session{
 	
 	private ArrayList<TutorInterface> tutors;
 
+
 	public Lab(Course course, ArrayList<TimeStamp> sessionTimes,
-			ArrayList<Student> students, String location, int minCapacity,
+			ArrayList<Student> students, AttendanceEnum attendance,
+			String sessionName, String location, int minCapacity,
 			int maxCapacity, ArrayList<TutorInterface> tutors) {
-		super(course, sessionTimes, students, location, minCapacity,
-				maxCapacity);
+		super(course, sessionTimes, students, attendance, sessionName,
+				location, minCapacity, maxCapacity);
 		this.tutors = tutors;
 	}
 

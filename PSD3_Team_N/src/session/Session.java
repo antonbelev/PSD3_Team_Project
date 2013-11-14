@@ -6,25 +6,59 @@ import roles.Student;
 
 public abstract class Session {
 	
+	public enum AttendanceEnum
+	{
+		PRESENT("present"), MV("mv"), ABSENT("absent");
+		
+		private AttendanceEnum(final String text) {
+	        this.text = text;
+	    }
+		private final String text;
+	    @Override
+	    public String toString() {
+	        return text;
+	    }
+	}
+	
 	private Course course;
 	private ArrayList<TimeStamp> sessionTimes;
 	private ArrayList<Student> students;
+	private AttendanceEnum attendance;
+	private String sessionName;
 	
 	private String location;
 	private int minCapacity;
-	private int maxCapacity;
-
+	private int maxCapacity;	
 
 	public Session(Course course, ArrayList<TimeStamp> sessionTimes,
-			ArrayList<Student> students, String location, int minCapacity,
+			ArrayList<Student> students, AttendanceEnum attendance,
+			String sessionName, String location, int minCapacity,
 			int maxCapacity) {
 		super();
 		this.course = course;
 		this.sessionTimes = sessionTimes;
 		this.students = students;
+		this.attendance = attendance;
+		this.sessionName = sessionName;
 		this.location = location;
 		this.minCapacity = minCapacity;
 		this.maxCapacity = maxCapacity;
+	}	
+
+	public String getSessionName() {
+		return sessionName;
+	}
+
+	public void setSessionName(String sessionName) {
+		this.sessionName = sessionName;
+	}
+
+	public AttendanceEnum getAttendance() {
+		return attendance;
+	}
+
+	public void setAttendance(AttendanceEnum attendance) {
+		this.attendance = attendance;
 	}
 
 	public Course getCourse() {
