@@ -33,7 +33,7 @@ public abstract class Help {
 
 	private static String getTeachingAdminMessages() {
 		String exportAttendance = "To export the attendance (-expatt)\n";
-		String exportStudentRecord = "To export student information (-expstinf)\n";
+		String exportStudentRecord = "To export student information (-expst)\n";
 		String cc = "To create a new course (-cc)\n";
 		String cs = "To create a new session (-cs)\n";	
 		String astc = "To assign new student to a course (-astc)\n";

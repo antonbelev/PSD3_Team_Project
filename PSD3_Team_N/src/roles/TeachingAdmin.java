@@ -51,9 +51,9 @@ public class TeachingAdmin extends User {
 	}
 
 	public String exportStudentAttendance(Course course) {
-		
+
 		System.out.println("Entered exportStudentAttendance");
-		
+
 		String csvHeader = "First name,Surname,ID number";
 		String csvLine = "";
 		ArrayList<Student> students = course.getStudents();
@@ -69,7 +69,7 @@ public class TeachingAdmin extends User {
 		for (Student stud : students) {
 			csvLine += stud.getFirstName() + "," + stud.getLastName() + ","
 					+ stud.getID();
-			
+
 			System.out.println("Student " + stud.getFirstName());
 
 			ArrayList<Course> currentStudentCourses = stud.getCourses();
@@ -85,7 +85,8 @@ public class TeachingAdmin extends User {
 				for (Session s : currentCourse.getSessions()) {
 					System.out.println("Session " + s.getSessionName());
 					if ((s instanceof Lab) || (s instanceof Tutorial)) {
-						csvLine += "," + s.getStudentAttendance().get(stud).toString();
+						csvLine += ","
+								+ s.getStudentAttendance().get(stud).toString();
 					}
 				}
 			} catch (Exception e) {
@@ -104,20 +105,19 @@ public class TeachingAdmin extends User {
 
 		for (Course c : s.getCourses()) {
 			int total = c.getCourseWorkMark() + c.getExamMark();
-			csvLine += c.getName() + "," + c.getCourseId() + ","
+			csvLine = c.getName() + "," + c.getCourseId() + ","
 					+ c.getCourseWorkMark() + "," + c.getExamMark() + ","
 					+ total + "\n";
 			csvHeader += csvLine;
 		}
 
 		return csvHeader;
-
 	}
 
 	public void csvFileGenerator(String fileName, String content) {
 		try {
 			File file = new File(fileName + ".csv");
-			file.delete();	
+			file.delete();
 			System.out.println("Entered file generator");
 			BufferedWriter out = new BufferedWriter(new FileWriter(fileName
 					+ ".csv"));
@@ -145,6 +145,10 @@ public class TeachingAdmin extends User {
 			processExpAtt(sc);
 			break;
 		}
+		case "-expst": {
+			processExpSt(sc);
+			break;
+		}
 		case "-cc": {
 			createCourse(sc);
 			break;
@@ -155,6 +159,11 @@ public class TeachingAdmin extends User {
 		}
 		case "-astc": {
 			assignStudentToCourse(sc);
+			break;
+		}
+		case "-setmark":
+		{
+			setMarks(sc);
 			break;
 		}
 		default:
@@ -175,8 +184,26 @@ public class TeachingAdmin extends User {
 				break;
 			}
 		}
-		
-		csvFileGenerator("attendance_" + course.getName() , exportStudentAttendance(course));
+
+		csvFileGenerator("attendance_" + course.getName(),
+				exportStudentAttendance(course));
+	}
+
+	private void processExpSt(Scanner sn) {
+		sn = new Scanner(new InputStreamReader(System.in));
+		System.out.print("Student id: ");
+		String id = sn.next();
+		Student student = null;
+
+		for (Student s : prototypeStudents) {
+			if (s.getID().equals(id)) {
+				student = s;
+				break;
+			}
+		}
+
+		csvFileGenerator("student_info_" + student.getID(),
+				exportStudentInformation(student));
 	}
 
 	private void assignStudentToCourse(Scanner sn) {
@@ -188,33 +215,35 @@ public class TeachingAdmin extends User {
 		String lastName = sn.next();
 		System.out.print("Student id: ");
 		String id = sn.next();
-		System.out.print("Assign to course: ");
-		String courseName = sn.next();
-		System.out.print("Assign to session: ");
+		
 
-		Course course = null;
-		
-		for (Course c : prototypeCourses) {
-			if (c.getName().equals(courseName)) {
-				course = c;
-				break;
-			}
-		}
-		
 		newStudent.setFirstName(firstName);
 		newStudent.setLastName(lastName);
-		newStudent.setID(id);
-		newStudent.getCourses().add(course);
-		course.getStudents().add(newStudent);
+		newStudent.setID(id);	
 		
-		ArrayList<Session> currentCourseSessions = course.getSessions();
-		for (Session s : currentCourseSessions)
-		{	
-			System.out.print("Input attendance (T/F/MV): ");
-			String att = sn.next();
-			AttendanceEnum attEnum = null;
-			switch (att.toUpperCase())
-			{
+		System.out.print("Assign to course (yes/y or no/n): ");		
+		String addNew = sn.next();
+		while (addNew.equals("y") || addNew.equals("yes"))
+		{
+			System.out.print("Assign to course (name): ");
+			String courseName = sn.next();
+			// System.out.print("Assign to session: ");
+			Course course = null;
+			for (Course c : prototypeCourses) {
+				if (c.getName().equals(courseName)) {
+					course = c;
+					break;
+				}
+			}
+			course.getStudents().add(newStudent);
+			newStudent.getCourses().add(course);
+			
+			ArrayList<Session> currentCourseSessions = course.getSessions();
+			for (Session s : currentCourseSessions) {
+				System.out.print("Input attendance for session" + s.getSessionName() + "(T/F/MV): ");
+				String att = sn.next();
+				AttendanceEnum attEnum = null;
+				switch (att.toUpperCase()) {
 				case "T":
 					attEnum = AttendanceEnum.PRESENT;
 					break;
@@ -223,9 +252,15 @@ public class TeachingAdmin extends User {
 					break;
 				case "MV":
 					attEnum = AttendanceEnum.MV;
-			}	
-			s.getStudentAttendance().put(newStudent, attEnum);
+				}
+				s.getStudentAttendance().put(newStudent, attEnum);
+			}
+			
+			System.out.print("Assign to course (yes/y or no/n): ");		
+			addNew = sn.next();
 		}
+		
+		prototypeStudents.add(newStudent);
 	}
 
 	private void createSession(Scanner sn) {
@@ -238,11 +273,12 @@ public class TeachingAdmin extends User {
 		System.out.print("Course assossiated with: ");
 		String courseName = sn.next();
 		Course sessionCourse = null;
-		
+
 		System.out.println("courses size " + prototypeCourses.size());
-		
+
 		for (Course c : prototypeCourses) {
-			System.out.println("course name " + c.getName() + " courseName " + courseName);
+			System.out.println("course name " + c.getName() + " courseName "
+					+ courseName);
 			if (c.getName().equals(courseName)) {
 				sessionCourse = c;
 				break;
@@ -256,11 +292,10 @@ public class TeachingAdmin extends User {
 		case "tut":
 			newSession = new Tutorial();
 		}
-		
+
 		newSession.setCourse(sessionCourse);
 		newSession.setSessionName(name);
 		sessionCourse.getSessions().add(newSession);
-		
 
 		this.prototypeSessions.add(newSession);
 
@@ -278,4 +313,32 @@ public class TeachingAdmin extends User {
 		this.prototypeCourses.add(newCourse);
 	}
 
+	private void setMarks(Scanner sn) {
+		sn = new Scanner(new InputStreamReader(System.in));
+		System.out.print("Course name: ");
+		String name = sn.next();
+		System.out.print("Assesment - Exam(E)/Course work(C): ");
+		String assesment = sn.next().toUpperCase();
+
+		for (Student s : prototypeStudents) {
+			Course currentCourse = null;
+			System.out.println("Current student: " + s.getFirstName() + s.getLastName() + " Id: " + s.getID());
+			for (Course c : s.getCourses()) {
+				if (c.getName().equals(name)) {
+					currentCourse = c;
+					break;
+				}
+			}
+
+			if (assesment.equals("E")) {
+				System.out.print("Enter Exam Mark: ");
+				currentCourse.setExamMark(sn.nextInt());
+			} else if (assesment.equals("C")) {
+				System.out.print("Enter Coursework Mark: ");
+				currentCourse.setCourseWorkMark(sn.nextInt());
+
+			}
+		}
+
+	}
 }
