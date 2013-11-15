@@ -8,16 +8,17 @@ import roles.TutorInterface;
 public class Lab extends Session{
 	
 	private ArrayList<TutorInterface> tutors;
+	
+	public Lab()
+	{
+		
+	}
 
-
-	public Lab(Course course, ArrayList<TimeStamp> sessionTimes,
-			ArrayList<Student> students, AttendanceEnum attendance,
-			String sessionName, String location, int minCapacity,
-			int maxCapacity, ArrayList<TutorInterface> tutors) {
-		super(course, sessionTimes, students, attendance, sessionName,
-				location, minCapacity, maxCapacity);
+	public Lab(ArrayList<TutorInterface> tutors) {
+		super();
 		this.tutors = tutors;
 	}
+
 
 	public ArrayList<TutorInterface> getTutors() {
 		return tutors;

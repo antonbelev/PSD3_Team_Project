@@ -9,12 +9,8 @@ public class Lecture extends Session{
 	
 	private ArrayList<Lecturer> lecturers;
 
-	public Lecture(Course course, ArrayList<TimeStamp> sessionTimes,
-			ArrayList<Student> students, AttendanceEnum attendance,
-			String sessionName, String location, int minCapacity,
-			int maxCapacity, ArrayList<Lecturer> lecturers) {
-		super(course, sessionTimes, students, attendance, sessionName,
-				location, minCapacity, maxCapacity);
+	public Lecture(ArrayList<Lecturer> lecturers) {
+		super();
 		this.lecturers = lecturers;
 	}
 

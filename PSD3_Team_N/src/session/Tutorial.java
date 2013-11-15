@@ -8,13 +8,14 @@ import roles.TutorInterface;
 public class Tutorial extends Session {
 	
 	private ArrayList<TutorInterface> tutors;
+	
+	public Tutorial()
+	{
+		
+	}
 
-	public Tutorial(Course course, ArrayList<TimeStamp> sessionTimes,
-			ArrayList<Student> students, AttendanceEnum attendance,
-			String sessionName, String location, int minCapacity,
-			int maxCapacity, ArrayList<TutorInterface> tutors) {
-		super(course, sessionTimes, students, attendance, sessionName,
-				location, minCapacity, maxCapacity);
+	public Tutorial(ArrayList<TutorInterface> tutors) {
+		super();
 		this.tutors = tutors;
 	}
 

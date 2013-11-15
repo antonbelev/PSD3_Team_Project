@@ -1,14 +1,17 @@
 package roles;
 
+import java.util.Scanner;
+
 public abstract class User {
 	
 	private String FirstName;
 	private String LastName;
 	private String email;
 	private String ID;
-
-	public String getFirstName() {
-		return FirstName;
+	
+	public User()
+	{
+		
 	}
 
 	public User(String firstName, String lastName, String iD, String email) {
@@ -16,6 +19,10 @@ public abstract class User {
 		this.LastName = lastName;
 		this.ID = iD;
 		this.email = email;
+	}
+	
+	public String getFirstName() {
+		return FirstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -46,20 +53,21 @@ public abstract class User {
 		this.email = email;
 	}
 	
-	public static boolean login(String username, String password)
+	public static User login(String username, String password)
 	{
 		if (authenticate(username, password))
 		{
 			System.out.println("Welcome " + username + "!");
-			return true;
+			User admin = new TeachingAdmin("Harry", "Potter", "12345", "harry.potter@gmail.com");
+			admin.getHelp();
+			return admin;
 		}
 		else
 		{
 			System.out.println("Wrong password or username!");
-			return false;
+			return null;
 		}
-	}
-	
+	}	
 	
 	//This method should authenticate the user credentials.
 	public static boolean authenticate(String username, String password)
@@ -69,7 +77,16 @@ public abstract class User {
 		return false;
 	}
 	
+	/**
+	 * Gets list of available commands for the current user and prints them to the standard output.
+	 */
+	public abstract void getHelp();
 	
+	/**
+	 * Executes user specific command. Prints out an error message if the command is invalid.
+	 * @param command Takes a string command.
+	 */
+	public abstract void processCommand(String command, Scanner sn);
 	
 
 }

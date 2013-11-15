@@ -29,7 +29,9 @@ public class Course {
 	
 	public Course()
 	{
-		
+		sessions = new ArrayList<Session>();
+		students = new ArrayList<Student>();
+		assignments = new ArrayList<Assignment>();
 	}
 	
 	public Course(String name, String courseId, Lecturer lecturer,

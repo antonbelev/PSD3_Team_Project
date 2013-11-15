@@ -1,5 +1,8 @@
 package roles;
 
+import java.util.Scanner;
+
+import helpers.Help;
 import session.Session;
 
 public class LecturerTutor extends Lecturer implements TutorInterface{
@@ -19,7 +22,7 @@ public class LecturerTutor extends Lecturer implements TutorInterface{
 		
 		
 		System.out.println("Student name : Student ID");
-		for (Student s : sesh.getStudents ()){
+		for (Student s : sesh.getStudentAttendance().keySet()){
 			System.out.println(s.getFirstName() +" "+ s.getLastName()+ " : " + s.getID());
 		}
 		// TODO Auto-generated method stub
@@ -29,6 +32,17 @@ public class LecturerTutor extends Lecturer implements TutorInterface{
 
 	@Override
 	public void rollBack() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void getHelp() {
+		Help.getHelpMessages(this);			
+	}
+	
+	@Override
+	public void processCommand(String command, Scanner sn) {
 		// TODO Auto-generated method stub
 		
 	}

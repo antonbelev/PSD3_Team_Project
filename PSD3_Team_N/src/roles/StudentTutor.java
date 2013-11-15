@@ -1,6 +1,9 @@
 package roles;
 
+import helpers.Help;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import session.Course;
 import session.Session;
@@ -22,6 +25,17 @@ public class StudentTutor extends Student implements TutorInterface{
 
 	@Override
 	public void rollBack() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void getHelp() {
+		Help.getHelpMessages(this);	
+	}
+	
+	@Override
+	public void processCommand(String command, Scanner sn) {
 		// TODO Auto-generated method stub
 		
 	}

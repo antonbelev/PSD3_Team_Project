@@ -1,6 +1,7 @@
 package session;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import roles.Student;
 
@@ -21,29 +22,45 @@ public abstract class Session {
 	}
 	
 	private Course course;
-	private ArrayList<TimeStamp> sessionTimes;
-	private ArrayList<Student> students;
-	private AttendanceEnum attendance;
+	private TimeStamp sessionTime;
+	//private ArrayList<Student> students;
+	//private AttendanceEnum attendance;
+	private HashMap<Student, AttendanceEnum> studentAttendance;
+	
 	private String sessionName;
 	
 	private String location;
 	private int minCapacity;
-	private int maxCapacity;	
+	private int maxCapacity;
+	
+	public Session()
+	{
+		studentAttendance = new HashMap<Student, AttendanceEnum>();
+	}
 
-	public Session(Course course, ArrayList<TimeStamp> sessionTimes,
+	public Session(Course course, TimeStamp sessionTime,
 			ArrayList<Student> students, AttendanceEnum attendance,
 			String sessionName, String location, int minCapacity,
 			int maxCapacity) {
 		super();
 		this.course = course;
-		this.sessionTimes = sessionTimes;
-		this.students = students;
-		this.attendance = attendance;
+		this.sessionTime = sessionTime;
+		//this.students = students;
+		//this.attendance = attendance;
 		this.sessionName = sessionName;
 		this.location = location;
 		this.minCapacity = minCapacity;
 		this.maxCapacity = maxCapacity;
 	}	
+
+	public HashMap<Student, AttendanceEnum> getStudentAttendance() {
+		return studentAttendance;
+	}
+
+	public void setStudentAttendance(
+			HashMap<Student, AttendanceEnum> studentAttendance) {
+		this.studentAttendance = studentAttendance;
+	}
 
 	public String getSessionName() {
 		return sessionName;
@@ -53,13 +70,21 @@ public abstract class Session {
 		this.sessionName = sessionName;
 	}
 
-	public AttendanceEnum getAttendance() {
+	/*public AttendanceEnum getAttendance() {
 		return attendance;
 	}
 
 	public void setAttendance(AttendanceEnum attendance) {
 		this.attendance = attendance;
 	}
+	
+	public ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
+	}*/
 
 	public Course getCourse() {
 		return course;
@@ -69,12 +94,12 @@ public abstract class Session {
 		this.course = course;
 	}
 
-	public ArrayList<TimeStamp> getSessionTimes() {
-		return sessionTimes;
+	public TimeStamp getSessionTime() {
+		return sessionTime;
 	}
 
-	public void setSessionTimes(ArrayList<TimeStamp> sessionTimes) {
-		this.sessionTimes = sessionTimes;
+	public void setSessionTime(TimeStamp sessionTime) {
+		this.sessionTime = sessionTime;
 	}
 
 	public String getLocation() {
@@ -101,13 +126,7 @@ public abstract class Session {
 		this.maxCapacity = maxCapacity;
 	}
 
-	public ArrayList<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(ArrayList<Student> students) {
-		this.students = students;
-	}
+	
 	
 	
 	

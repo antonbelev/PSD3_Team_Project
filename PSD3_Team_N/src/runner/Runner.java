@@ -8,7 +8,7 @@ import roles.User;
 public class Runner {
 
 	public static void main(String[] args) {
-		boolean success;
+		User user;
 		String username, password;
 		Scanner sn = new Scanner(new InputStreamReader(System.in));
 		String input;
@@ -22,15 +22,15 @@ public class Runner {
 			username = sn.next();
 			System.out.print("password: ");
 			password = sn.next();
-			success = User.login(username, password);
-		} while (!success);
+			user = User.login(username, password);
+		} while (user == null);
 
 		input = sn.nextLine();
 
 		while (!input.equals("-exit")) {
-			// System.out.println(input);
-
 			input = sn.nextLine();
+			user.processCommand(input, sn);
+			
 		}
 		sn.close();
 		System.out.println("terminated");
