@@ -29,6 +29,13 @@ public class StudentTutor extends Student implements TutorInterface{
 		
 	}
 	
+	
+	@Override
+	public void uploadAttendance(Scanner sn) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void getHelp() {
 		Help.getHelpMessages(this);	
