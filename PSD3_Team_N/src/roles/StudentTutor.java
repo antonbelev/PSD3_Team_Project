@@ -18,7 +18,7 @@ public class StudentTutor extends Student implements TutorInterface{
 	}
 
 	@Override
-	public void updateAttendance(Session sesh) {
+	public void updateAttendance(Scanner sn) {
 		// TODO Auto-generated method stub
 		
 	}
