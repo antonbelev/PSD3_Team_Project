@@ -16,14 +16,15 @@ public abstract class Help {
 		
 		String userSpecific = "";
 		
-		if (user instanceof Lecturer)
-			userSpecific = getLecturerMessages();
-		else if (user instanceof LecturerTutor)
+		
+		if (user instanceof LecturerTutor)
 			userSpecific = getLecturerTutorMessages();
-		else if (user instanceof Student)
-			userSpecific = getStudentMessages();
+		else if (user instanceof Lecturer)
+			userSpecific = getLecturerMessages();
 		else if (user instanceof StudentTutor)
 			userSpecific = getStudentTutorMessages();
+		else if (user instanceof Student)
+			userSpecific = getStudentMessages();
 		else if (user instanceof TeachingAdmin)
 			userSpecific = getTeachingAdminMessages();
 		
@@ -52,8 +53,8 @@ public abstract class Help {
 	}
 
 	private static String getLecturerTutorMessages() {
-		// TODO Auto-generated method stub
-		return "";
+		String updatt = "To update student attendance (-updatt)\n";
+		return updatt;
 	}
 
 	private static String getLecturerMessages() {

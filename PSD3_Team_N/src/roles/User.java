@@ -57,10 +57,20 @@ public abstract class User {
 	{
 		if (authenticate(username, password))
 		{
+			User user = null;
 			System.out.println("Welcome " + username + "!");
-			User admin = new TeachingAdmin("Harry", "Potter", "12345", "harry.potter@gmail.com");
-			admin.getHelp();
-			return admin;
+			if (username.equals("admin"))
+			{
+				user = new TeachingAdmin("Harry", "Potter", "12345", "harry.potter@gmail.com");
+				user.getHelp();
+			}
+			else if (username.equals("lecturertutor"))
+			{
+				user = new LecturerTutor("Albus", "Dumbledore", "anOldId", "harry.is@weak.com");
+				user.getHelp();
+			}
+			
+			return user;
 		}
 		else
 		{
@@ -73,6 +83,8 @@ public abstract class User {
 	public static boolean authenticate(String username, String password)
 	{
 		if (username.equals("admin") && password.equals("admin"))
+			return true;
+		else if (username.equals("lecturertutor") && password.equals("lecturertutor"))
 			return true;
 		return false;
 	}

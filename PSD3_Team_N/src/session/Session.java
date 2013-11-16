@@ -9,7 +9,7 @@ public abstract class Session {
 	
 	public enum AttendanceEnum
 	{
-		PRESENT("present"), MV("mv"), ABSENT("absent");
+		PRESENT("present"), MV("mv"), ABSENT("absent"), NOTSET("N/A");
 		
 		private AttendanceEnum(final String text) {
 	        this.text = text;
