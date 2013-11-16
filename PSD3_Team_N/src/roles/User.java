@@ -64,9 +64,14 @@ public abstract class User {
 				user = new TeachingAdmin("Harry", "Potter", "12345", "harry.potter@gmail.com");
 				user.getHelp();
 			}
-			else if (username.equals("lecturertutor"))
+			else if (username.equals("lt")) //LecturerTutor
 			{
 				user = new LecturerTutor("Albus", "Dumbledore", "anOldId", "harry.is@weak.com");
+				user.getHelp();
+			}
+			else if (username.equals("st")) //StudentTutor
+			{
+				user = new StudentTutor("Albus", "Dumbledore", "anOldId", "harry.is@weak.com", null);
 				user.getHelp();
 			}
 			
@@ -84,7 +89,9 @@ public abstract class User {
 	{
 		if (username.equals("admin") && password.equals("admin"))
 			return true;
-		else if (username.equals("lecturertutor") && password.equals("lecturertutor"))
+		else if (username.equals("lt") && password.equals("lt"))
+			return true;
+		else if (username.equals("st") && password.equals("st"))
 			return true;
 		return false;
 	}

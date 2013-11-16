@@ -43,8 +43,8 @@ public abstract class Help {
 	}
 
 	private static String getStudentTutorMessages() {
-		// TODO Auto-generated method stub
-		return "";
+		String updatt = "To update student attendance (-updatt)\n";
+		return updatt;
 	}
 
 	private static String getStudentMessages() {

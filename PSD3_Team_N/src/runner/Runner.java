@@ -29,8 +29,7 @@ public class Runner {
 
 		while (!input.equals("-exit")) {
 			input = sn.nextLine();
-			user.processCommand(input, sn);
-			
+			user.processCommand(input, sn);			
 		}
 		sn.close();
 		System.out.println("terminated");

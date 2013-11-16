@@ -139,7 +139,6 @@ public class LecturerTutor extends Lecturer implements TutorInterface {
 		AttendanceEnum attEnum = null;
 
 		try {
-
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine();
 			headers = line.split(cvsSplitBy);
