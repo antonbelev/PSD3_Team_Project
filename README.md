@@ -1,17 +1,24 @@
-1.	Installation requirements
+==============================
+Installation requirements
+-------------------------
 In order to run this project you need to have a Java compiler on your machine.
 
-2.	Running
+Run
+---
 The prototype is run via a Main method, which is allocated in the runner.Runner.java file.
 
-3.	Logging in the system
-There are currently three account types with the following user credentials:
-Teaching administrator – username: admin, password: admin;
-Student tutor – username: st, password: st;
-Lecturer tutor – username: lt, password lt;
-For each user you can see the available command that are supported by typing “-help”
+Logging in the system
+---------------------
 
-4.	Prototype notes
+There are currently three account types with the following user credentials:
+Teaching administrator ï¿½ username: admin, password: admin;
+Student tutor ï¿½ username: st, password: st;
+Lecturer tutor ï¿½ username: lt, password lt;
+For each user you can see the available command that are supported by typing ï¿½-helpï¿½
+
+Prototype notes
+---------------
+
 Since the current software is just a prototype you should note the following things:
 - the sessions and the students that the tutors can see are just hard-coded data, changes made to these data is not stored
 anywhere after the termination of the program
