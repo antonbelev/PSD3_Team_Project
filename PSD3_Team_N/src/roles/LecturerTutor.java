@@ -122,7 +122,6 @@ public class LecturerTutor extends Lecturer implements TutorInterface {
 			}
 			nextCommand = sn.next();
 		} while (!nextCommand.equals("-quit"));
-
 	}
 
 	@Override
