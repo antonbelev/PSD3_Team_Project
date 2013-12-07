@@ -6,29 +6,71 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript">></script>
     <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js" type="text/javascript"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" />  
+    <script type="text/javascript" src="PATH/TO/YOUR/COPY/OF/jquery.mousewheel.min.js"></script>
+
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+	
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.datebox.min.js"></script>
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
     
     <style>
 		.clear { clear: both;}
 	</style>
+	<script>		
+		$(document).on("pageinit", function (event) {
+			$(".adminPage").trigger("create");
+		});
+	</script>	
+	
 </head>
 <body>
 	
-    <div data-role="collapsible">
+	
+	<div class="clear"></div>
+    <div data-role="collapsible" class="adminPage" data-theme="b" style="background-color: #D6D6FF; width: 550px; margin-left: auto; margin-right: auto;" data-collapsed="false">
 	   <h3>New teaching session</h3>
-	   <label for="date">Date:</label>
-       <input type="text" name="date" id="date" value=""  />
+	   <label for="startDate">Start Date:</label>
+	   <input name="startDate" id="startDate" type="date" data-role="datebox"
+	   		data-options='{"mode": "calbox"}' />
+	   	<div class="clear"></div>
+	   <label for="endDate">End Date:</label>
+	   <input name="endDate" id="endDate" type="date" data-role="datebox"
+	   		data-options='{"mode": "calbox"}' />
        <div class="clear"></div>
-       <label for="time">Time:</label>
-       <input type="text" name="time" id="time" value=""  />
+       <label for="startTime">Start Time</label>
+	   <input name="startTime" id="startTime" type="date" data-role="datebox"
+   			data-options='{"mode": "timebox"}' />
+   	   <div class="clear"></div>
+   	   <label for="endTime">End Time</label>
+	   <input name="endTime" id="endTime" type="date" data-role="datebox"
+   			data-options='{"mode": "timebox"}' />
+   	   <div class="clear"></div>
+   	   <label for="select-choice-0" class="select">Repeat frequency:</label>
+		<select name="select-choice-0" id="select-choice-1">
+		   <option value="1">Every week</option>
+		   <option value="2">Every forth week</option>
+		   <option value="3">Every month</option>
+		</select>	
        <div class="clear"></div>
-       <label for="duration">Duration:</label>
-       <input type="text" name="duration" id="duration" value=""  />
-       <div class="clear"></div>
-       <label for="repeat">Repeat frequency:</label>
-       <input type="text" name="repeat" id="repeat" value=""  />
-       <div class="clear"></div>
+       <div data-role="fieldcontain" style="text-align: center;">
+		 	<fieldset data-role="controlgroup"  data-type="horizontal">
+				<legend>Days of the week:</legend>
+				<input type="checkbox" name="chckMon" id="chckMon" class="custom" />
+				<label for="chckMon">Mon</label>
+				<input type="checkbox" name="chckTue" id="chckTue" class="custom" />
+				<label for="chckTue">Tue</label>
+				<input type="checkbox" name="chckWed" id="chckWed" class="custom" />
+				<label for="chckWed">Wed</label>
+				<input type="checkbox" name="chckThu" id="chckThu" class="custom" />
+				<label for="chckThu">Thu</label>
+				<input type="checkbox" name="chckFri" id="chckFri" class="custom" />
+				<label for="chckFri">Fri</label>
+		    </fieldset>
+		</div>
        <label for="lecturer">Lecturer names:</label>
        <input type="text" name="lecturer" id="lecturer" value=""  />
        <div class="clear"></div>
@@ -38,8 +80,9 @@
        <input type="checkbox" name="chckCompulsory" id="chckCompulsory" class="custom" />
 	   <label for="chckCompulsory">Compulsory</label>
 	   <div class="clear"></div>
-	   <label for="venue">Max attendance:</label>
-       <input type="text" name="venue" id="venue" value=""  />	   
+	   <label for="venue">Venue:</label>
+       <input type="text" name="venue" id="venue" value=""  />
+       <input type="button" id="btnCreate" value="Create new event" />	   
 	</div>
     
 </body>
