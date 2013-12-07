@@ -19,17 +19,10 @@
     
     <style>
 		.clear { clear: both;}
-	</style>
-	<script>		
-		$(document).on("pageinit", function (event) {
-			$(".adminPage").trigger("create");
-		});
-	</script>	
-	
+		.ui-input-datebox.ui-corner-all.ui-body-b { background-color: white !important; border: 1px solid #AAAAAA !important;}
+	</style>	
 </head>
-<body>
-	
-	
+<body>	
 	<div class="clear"></div>
     <div data-role="collapsible" class="adminPage" data-theme="b" style="background-color: #D6D6FF; width: 550px; margin-left: auto; margin-right: auto;" data-collapsed="false">
 	   <h3>New teaching session</h3>
@@ -82,7 +75,7 @@
 	   <div class="clear"></div>
 	   <label for="venue">Venue:</label>
        <input type="text" name="venue" id="venue" value=""  />
-       <input type="button" id="btnCreate" value="Create new event" />	   
+       <input type="button" id="btnCreate" data-theme="b" value="Create new event" />	   
 	</div>
     
 </body>
