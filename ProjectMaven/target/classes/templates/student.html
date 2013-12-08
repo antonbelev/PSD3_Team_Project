@@ -5,11 +5,82 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+    <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" /> 
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.print.css " />
+
+	<script>
+
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+			events: [
+				{
+					title: 'PSD3 lab',
+					start: new Date(y, m, 2, 9, 0),
+					allDay: true
+				},
+				{
+					title: 'PSD3 Sprint',
+					start: new Date(y, m, d-4),
+					end: new Date(y, m, d+2)
+				},
+				{
+					id: 999,
+					title: 'AP3 lecture',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false
+				},
+				{
+					id: 999,
+					title: 'AP3 lecture',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false
+				},
+				{
+					title: 'Team Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false
+				},
+				{
+					title: 'Supervisor Meeting',
+					start: new Date(y, m, d+1, 12, 00),
+					allDay: false
+				},
+				{
+					title: 'Supervisor Meeting',
+					start: new Date(y, m, d+2, 12, 00),
+					allDay: false
+				}
+			]
+		});
+		
+	});
+
+</script>
 </head>
 <body>
     
-    
-    
+    <div class="clear"></div>
+    <div data-role="collapsible" class="adminPage" data-theme="b" style="background-color: #D6D6FF; width: 800px; margin-left: auto; margin-right: auto;" data-collapsed="false">
+	   <h3>Student calendar</h3>
+	   <div id='calendar'></div>
+	</div> 
     
 </body>
 </html>
